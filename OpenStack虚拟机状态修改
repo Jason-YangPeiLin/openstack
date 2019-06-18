@@ -1,0 +1,14 @@
+Openstack虚拟机状态修改
+	nova reset-state --active  虚拟机ID      #报错无法操作时，在计算节点重制虚拟机状态
+	nova stop 511d4a9d-c908-4eba-9569-a1ddb6022ad7   #在计算节点停止虚拟机后面是对应ID
+	nova start 511d4a9d-c908-4eba-9569-a1ddb6022ad7  #在计算节点启动虚拟机后面是对应ID
+	nova reboot 511d4a9d-c908-4eba-9569-a1ddb6022ad7  #在计算节点重启虚拟机 后面是对应ID
+  进入数据库进行修改
+  Database show; 查看数据库
+	Use nova； 进入nova数据库
+	select * from instances where uuid=’实例的ID '；
+	执行语句：
+  UPDATE  instances SET vm_state = 'active' and task_state =NULL  where uuid = '实例ID';将实例状态更改为active、实例任务状态重置。
+	UPDATE  instances SET power_state='1' where uuid='6f98fa6c-ce8c-4267-949d-952598908c17';  #修改电源状态是running  power_state的状态是从0-4
+	UPDATE  instances SET vm_state = 'active' where uuid='6f98fa6c-ce8c-4267-949d-952598908c17'; 修改状态是active
+	UPDATE  instances SET  task_state ='none' where uuid='6f98fa6c-ce8c-4267-949d-952598908c17';修改任务是none
