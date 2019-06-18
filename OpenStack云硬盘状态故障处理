@@ -1,0 +1,15 @@
+Openstack云硬盘状态故障处理
+	创建云硬盘的过程中，如果openstack的dashboard中云硬盘状态界面出现Error-Attaching状态，那么可以通过具体命令强制删除
+	删除思路是先把云硬盘状态置为Available，然后使用cinder delete +云硬盘UUID的方式删除。具体命令如下：
+	cinder reset-state --state available 云硬盘UUID
+	cinder delete 云硬盘UUID。
+	rbd ls -p volumes  #查看ceph池中的所有volumes
+	delete from volumes where id = 'cbdde6bf-8972-4aa6-9c48-cbbc8c716c2e'; #删除硬盘
+	update volumes SET status = 'Available' where id = 'be4e6b02-3643-4406-ad62-39d43d49b3a0'; #修改云硬盘状态为Available
+	update volumes set deleted=0 where id='adaa0764-a438-4dbe-afde-8acc5bc2fb98'; #修改云硬盘挂载方式0是卸载 1是挂载 此种方法没有完全验证
+         cinder list --all  #列出所有云盘
+         cinder server-list #列出控制节点cinder服务。
+         cinder snapshot-list   #列出快照列表
+         nova show 主机ID #查看主机状态
+         nova volume-attach  云主机id 云盘id 进行挂载  #用命令挂载云硬盘
+         nova volume-detach  云主机id 云盘id 进行卸载  #用命令卸载云硬盘
