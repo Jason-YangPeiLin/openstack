@@ -1,0 +1,41 @@
+1. 查看虚拟机列表
+nova list –all-t
+nova list –all-t –deleted
+nova list --all-t --field host
+nova list --fields name,status
+2. 查看该主机上所有的虚拟机
+nova list --all-t --host 主机ID
+3. 虚拟机详情
+nova show vm_id
+4. 查看虚拟机操作记录
+nova instance-action-list vm_id
+5. 关机
+nova stop vm_id； nova stop –hard vm_id
+6. 开机
+nova start vm_id
+7. 删除虚拟机
+nova delete vm_id
+8. 重置虚拟机状态
+nova reset-state vm_id
+9. 虚拟机手动HA
+nova reschedule vm_id
+10. 查看虚拟机xml文件
+virsh dumpxml instance-id
+11. 设置虚拟机meta_data
+nova meta 3d33cdc6-9789-4f94-9624-385aeb3fbc37 set __instance_vwatchdog=True
+12. 查看虚拟机绑定vcpu
+virsh vcpupin instance_id
+13. 冷迁移
+nova migrate [--poll] <server> [<host>]
+14. 热迁移
+nova live-migration [--block-migrate] <server> [<host>]
+15. 挂卷
+nova volume-attach [--tag <tag>] <server> <volume> [<device>]
+16. 卸卷
+nova volume-detach <server> <volume>
+17. 挂网卡
+nova interface-attach [--port-id <port_id>] [--net-id <net_id>]
+[--fixed-ip <fixed_ip>] [--tag <tag>]
+<server>
+卸载网卡
+nova interface-detach <server> <port_id>
