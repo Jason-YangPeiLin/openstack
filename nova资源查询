@@ -1,0 +1,8 @@
+1. 查看主机上资源隔离
+cat /opt/fusionplatform/data/cps_config/res_info.json
+
+2. 查看cpu复用比
+cat /etc/nova/nova-compute.conf | grep cpu_allocation_ratio
+
+3. 查看资源
+nova hypervisor-show D18C23DB-D0F1-4948-AC39-F5C997547E5F
