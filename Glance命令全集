@@ -1,0 +1,11 @@
+命令	含义	支持/扩展
+glance help	显示glance命令或者glance子命令的使用帮助。	支持
+glance image-create	创建一个新镜像。	支持
+glance image-delete	删除指定镜像。	支持
+glance image-download	下载指定镜像。	支持
+glance image-list	显示所有镜像的列表信息。	支持
+glance image-show	显示指定镜像的详细信息。	支持
+glance image-update	更新指定镜像。	支持
+glance member-create	添加租户到镜像权限列表。	支持
+glance member-delete	从镜像权限列表中删除租户。	支持
+glance member-list	显示某个镜像或者某个租户的共享权限。	支持
